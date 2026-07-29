@@ -1,26 +1,191 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ---------------------------------------------------------------------------
+   Design tokens — ported 1:1 from the "Startup Studio" reference design.
+
+   The accent colours (--om-lime / --om-lime-hi / --om-green) and the vertical
+   rhythm (--om-pad / --om-pad-sm / --om-hero-pad) are injected at runtime on
+   the site wrapper from Admin → Appearance, so they are always referenced as
+   `var(--om-*)` rather than as static theme colours.
+--------------------------------------------------------------------------- */
+@theme {
+  --color-ink: #14172b;
+  --color-mist: #f6faf8;
+  --color-body: #54615c;
+  --color-muted: #7c8a85;
+  --color-faint: #9aa8a3;
+  --color-line: #dfeae5;
+  --color-rule: #d6e5df;
+  --color-rule-soft: #cfe0d9;
+
+  /* Fixed brand palette — used by the admin chrome, which never re-themes. */
+  --color-brand: #b8e62a;
+  --color-brand-hi: #cdf556;
+  --color-brand-deep: #3fa80b;
+
+  --font-sans: var(--font-jakarta), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    margin: 0;
+    background: var(--color-mist);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  a {
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--color-brand-deep);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--om-lime, var(--color-brand));
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ---------------------------------------------------------------------------
+   Keyframes (verbatim from the reference stylesheet)
+--------------------------------------------------------------------------- */
+@keyframes om-grid-drift {
+  from {
+    background-position:
+      0 0,
+      0 0;
+  }
+  to {
+    background-position:
+      56px 56px,
+      56px 56px;
+  }
+}
+
+@keyframes om-scan {
+  0% {
+    transform: translateY(-10%);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(760px);
+    opacity: 0;
+  }
+}
+
+@keyframes om-float-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-4deg);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0) rotate(-1deg);
+  }
+}
+
+@keyframes om-float-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(5deg);
+  }
+  50% {
+    transform: translate3d(0, 12px, 0) rotate(2deg);
+  }
+}
+
+@keyframes om-float-c {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-8deg);
+  }
+  50% {
+    transform: translate3d(0, -9px, 0) rotate(-3deg);
+  }
+}
+
+@keyframes om-marquee-l {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes om-marquee-r {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Utilities
+--------------------------------------------------------------------------- */
+
+/* Edge fade on the tech-stack marquee lanes. */
+@utility lane-mask {
+  position: relative;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}
+
+/* Side fade over the floating hero line-art. */
+@utility hero-decor-mask {
+  mask-image: linear-gradient(90deg, #000, transparent 27%, transparent 73%, #000);
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    #000,
+    transparent 27%,
+    transparent 73%,
+    #000
+  );
+}
+
+/* Native form controls inside the admin keep the brand accent. */
+@utility accent-brand {
+  accent-color: var(--color-brand-deep);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
