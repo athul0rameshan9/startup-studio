@@ -98,36 +98,151 @@
   }
 }
 
-/* Hero doodle clusters: a slow vertical drift, no rotation — the clusters are
-   tall enough that rotating them would visibly shear the art. */
-@keyframes om-doodle-a {
+/* Hero doodle scene: a slow vertical drift on each whole illustration, no
+   rotation — they're tall enough that rotating them would visibly shear the
+   art. */
+@keyframes om-float-a {
   0%,
   100% {
     transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translate3d(0, -11px, 0);
+    transform: translate3d(0, -14px, 0);
   }
 }
 
-@keyframes om-doodle-b {
+@keyframes om-float-b {
   0%,
   100% {
     transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translate3d(0, 9px, 0);
+    transform: translate3d(0, 12px, 0);
   }
 }
 
-/* Breathing accent nodes in the doodle scene. */
-@keyframes om-doodle-pulse {
+/* Individual motifs drifting within an illustration, independent of — and
+   staggered against — the whole scene's own slow sway. */
+@keyframes om-bob {
   0%,
   100% {
-    opacity: 0.6;
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* The paper-plane motif: a gentle horizontal drift instead of vertical. */
+@keyframes om-bob-x {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(8px);
+  }
+}
+
+/* Dashed connector "wires" flowing between motifs. */
+@keyframes om-dash {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+
+@keyframes om-dash-rev {
+  to {
+    stroke-dashoffset: 40;
+  }
+}
+
+/* A faster, snappier breathe for small accent marks (sparkles, corner
+   brackets, dot-grid twinkle). */
+@keyframes om-twinkle {
+  0%,
+  100% {
+    opacity: 0.18;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+/* Status dots on the terminal / code-window / server-rack motifs. */
+@keyframes om-blink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0.15;
+  }
+}
+
+/* Spinning loaders — the flywheel, gear and globe motifs. */
+@keyframes om-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Bar-chart bars breathing in height, anchored to their own baseline. */
+@keyframes om-bar {
+  0%,
+  100% {
+    transform: scaleY(0.6);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+/* Chat-bubble "typing" dots. */
+@keyframes om-dot {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+/* Breathing accent nodes — coin ring, network graph dots. */
+@keyframes om-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
   }
   50% {
     opacity: 1;
+  }
+}
+
+/* A soft glow on accent strokes (antenna, code brackets). */
+@keyframes om-glow {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* A stroke that appears to draw itself in a loop — checkmarks, signature
+   squiggles. */
+@keyframes om-draw {
+  0%,
+  100% {
+    stroke-dashoffset: 140;
+  }
+  60% {
+    stroke-dashoffset: 0;
   }
 }
 
