@@ -23,7 +23,7 @@ export function TeamSection({ team }: { team: TeamContent }) {
                 alt={`${member.name} portrait`}
                 width={96}
                 height={110}
-                className="block h-[110px] w-24 flex-none rounded-2xl object-cover"
+                className="block h-[110px] w-[96px] flex-none rounded-2xl object-cover"
               />
               <div>
                 <div className="text-[17px] font-bold">{member.name}</div>

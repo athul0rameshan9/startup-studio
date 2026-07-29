@@ -23,6 +23,11 @@
   --color-brand-hi: #cdf556;
   --color-brand-deep: #3fa80b;
 
+  /* Hero line art. A lit indigo out of the same family as --color-ink, so the
+     doodle scene reads as the background catching light rather than as a
+     second brand colour. Accents inside the art still come from --om-lime. */
+  --color-decor: #6a5ad8;
+
   --font-sans: var(--font-jakarta), system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, monospace;
 }
@@ -93,33 +98,36 @@
   }
 }
 
-@keyframes om-float-a {
+/* Hero doodle clusters: a slow vertical drift, no rotation — the clusters are
+   tall enough that rotating them would visibly shear the art. */
+@keyframes om-doodle-a {
   0%,
   100% {
-    transform: translate3d(0, 0, 0) rotate(-4deg);
+    transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translate3d(0, -14px, 0) rotate(-1deg);
+    transform: translate3d(0, -11px, 0);
   }
 }
 
-@keyframes om-float-b {
+@keyframes om-doodle-b {
   0%,
   100% {
-    transform: translate3d(0, 0, 0) rotate(5deg);
+    transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translate3d(0, 12px, 0) rotate(2deg);
+    transform: translate3d(0, 9px, 0);
   }
 }
 
-@keyframes om-float-c {
+/* Breathing accent nodes in the doodle scene. */
+@keyframes om-doodle-pulse {
   0%,
   100% {
-    transform: translate3d(0, 0, 0) rotate(-8deg);
+    opacity: 0.6;
   }
   50% {
-    transform: translate3d(0, -9px, 0) rotate(-3deg);
+    opacity: 1;
   }
 }
 
@@ -159,16 +167,24 @@
   );
 }
 
-/* Side fade over the floating hero line-art. */
+/* Fade over the hero doodle scene: the clusters stay solid in the outer margins
+   and dissolve before they reach the headline, then dissolve again at the
+   bottom so nothing collides with the stat strip. */
 @utility hero-decor-mask {
-  mask-image: linear-gradient(90deg, #000, transparent 27%, transparent 73%, #000);
-  -webkit-mask-image: linear-gradient(
-    90deg,
-    #000,
-    transparent 27%,
-    transparent 73%,
-    #000
-  );
+  --om-decor-fade: linear-gradient(
+      90deg,
+      #000 0%,
+      #000 15%,
+      transparent 36%,
+      transparent 64%,
+      #000 85%,
+      #000 100%
+    ),
+    linear-gradient(180deg, #000 0%, #000 62%, transparent 96%);
+  mask-image: var(--om-decor-fade);
+  mask-composite: intersect;
+  -webkit-mask-image: var(--om-decor-fade);
+  -webkit-mask-composite: source-in;
 }
 
 /* Native form controls inside the admin keep the brand accent. */
