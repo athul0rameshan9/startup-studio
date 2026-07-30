@@ -24,24 +24,24 @@ export function Hero({ hero, layout }: HeroProps) {
         )}
       >
         {hero.eyebrow ? (
-          <div className="mb-[22px] font-mono text-[13px] tracking-[0.14em] text-[var(--om-lime)]">
+          <div className="mb-3 font-mono text-[13px] tracking-[0.14em] text-[var(--om-lime)]">
             {hero.eyebrow}
           </div>
         ) : null}
 
-        <h1 className="m-0 mb-6 max-w-[860px] text-[38px] leading-[1.06] font-extrabold tracking-[-0.035em] text-balance sm:text-[52px] lg:text-[68px] lg:leading-[1.04]">
+        <h1 className="m-0 mb-4 max-w-[860px] text-[38px] leading-[1.06] font-extrabold tracking-[-0.035em] text-balance sm:text-[52px] lg:text-[68px] lg:leading-[1.04]">
           {hero.title}
         </h1>
 
         {hero.subtitle ? (
-          <p className="m-0 mb-9 max-w-[620px] text-[17px] leading-[1.6] text-white/68 text-pretty lg:text-[19px]">
+          <p className="m-0 mb-6 max-w-[620px] text-[17px] leading-[1.6] text-white/68 text-pretty lg:text-[19px]">
             {hero.subtitle}
           </p>
         ) : null}
 
         <div
           className={cn(
-            "mb-[26px] flex flex-wrap gap-3.5",
+            "mb-4 flex flex-wrap gap-3.5",
             editorial ? "justify-start" : "justify-center",
           )}
         >
@@ -71,7 +71,7 @@ export function Hero({ hero, layout }: HeroProps) {
             {hero.stats.map((stat) => (
               <div
                 key={`${stat.value}-${stat.label}`}
-                className="bg-ink px-7 py-[30px]"
+                className="bg-ink px-7 py-5"
               >
                 <div className="text-[34px] font-extrabold tracking-[-0.03em] text-[var(--om-lime)]">
                   {stat.value}

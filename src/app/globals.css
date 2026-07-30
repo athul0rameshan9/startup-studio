@@ -284,15 +284,19 @@
 
 /* Fade over the hero doodle scene: the clusters stay solid in the outer margins
    and dissolve before they reach the headline, then dissolve again at the
-   bottom so nothing collides with the stat strip. */
+   bottom so nothing collides with the stat strip.
+
+   Below xl there's a lot less gutter beside the centred headline (it's pinned
+   to a max width well before the viewport is), so the horizontal fade has to
+   bite in much sooner — otherwise the art runs under the text instead of
+   dissolving beside it. xl+ restores the wider fade tuned for the roomier
+   gutter there. */
 @utility hero-decor-mask {
   --om-decor-fade: linear-gradient(
       90deg,
       #000 0%,
-      #000 15%,
-      transparent 36%,
-      transparent 64%,
-      #000 85%,
+      transparent 9%,
+      transparent 91%,
       #000 100%
     ),
     linear-gradient(180deg, #000 0%, #000 62%, transparent 96%);
@@ -300,6 +304,21 @@
   mask-composite: intersect;
   -webkit-mask-image: var(--om-decor-fade);
   -webkit-mask-composite: source-in;
+}
+
+@media (min-width: 1280px) {
+  .hero-decor-mask {
+    --om-decor-fade: linear-gradient(
+        90deg,
+        #000 0%,
+        #000 15%,
+        transparent 36%,
+        transparent 64%,
+        #000 85%,
+        #000 100%
+      ),
+      linear-gradient(180deg, #000 0%, #000 62%, transparent 96%);
+  }
 }
 
 /* Native form controls inside the admin keep the brand accent. */

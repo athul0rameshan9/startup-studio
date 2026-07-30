@@ -21,11 +21,8 @@ function LeftDoodle() {
       strokeWidth={1.6}
       strokeLinecap="round"
       strokeLinejoin="round"
+      className="absolute left-0 top-[18px] h-[540px] xl:top-[24px] xl:h-[750px]"
       style={{
-        position: "absolute",
-        left: 0,
-        top: 24,
-        height: 750,
         opacity: 0.75,
         animation: "om-float-a 26s ease-in-out infinite",
       }}
@@ -370,11 +367,8 @@ function RightDoodle() {
       strokeWidth={1.6}
       strokeLinecap="round"
       strokeLinejoin="round"
+      className="absolute right-0 top-[26px] h-[540px] xl:top-[34px] xl:h-[750px]"
       style={{
-        position: "absolute",
-        right: 0,
-        top: 34,
-        height: 750,
         opacity: 0.72,
         animation: "om-float-b 30s ease-in-out infinite",
       }}
@@ -709,8 +703,9 @@ function RightDoodle() {
 
 /**
  * The decorative layer behind the hero. Both illustrations are pinned to the
- * xl+ breakpoint, where there's a gutter beside the centred headline for them
- * to sit in. Editorial starts its copy at the container's left edge, so that
+ * lg+ breakpoint, where there's a gutter beside the centred headline for them
+ * to sit in — a smaller cut of the art below xl, full-size once the gutter
+ * widens out. Editorial starts its copy at the container's left edge, so that
  * side drops its doodle and the right illustration carries the composition.
  */
 export function HeroDecor({ layout }: { layout: HeroLayout }) {
@@ -719,7 +714,7 @@ export function HeroDecor({ layout }: { layout: HeroLayout }) {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute inset-x-0 top-0 z-0 hidden h-[780px] select-none xl:block"
+      className="pointer-events-none absolute inset-x-0 top-0 z-0 hidden h-[560px] select-none lg:block xl:h-[780px]"
     >
       {/* The field the line art sits in — the corners catch a little light. */}
       <div

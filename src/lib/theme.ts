@@ -26,9 +26,9 @@ export const RHYTHMS: Record<
   RhythmId,
   { pad: number; padSm: number; heroPad: number }
 > = {
-  Airy: { pad: 124, padSm: 96, heroPad: 128 },
-  Balanced: { pad: 96, padSm: 80, heroPad: 104 },
-  Tight: { pad: 68, padSm: 56, heroPad: 76 },
+  Airy: { pad: 124, padSm: 96, heroPad: 92 },
+  Balanced: { pad: 96, padSm: 80, heroPad: 72 },
+  Tight: { pad: 68, padSm: 56, heroPad: 56 },
 };
 
 export const RHYTHM_IDS = Object.keys(RHYTHMS) as RhythmId[];
