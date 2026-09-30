@@ -57,12 +57,18 @@ export const defaultContent: Content = {
   trustedBy: {
     enabled: true,
     label: "TRUSTED BY",
-    note: "client logos",
+    note: "",
     logos: [
-      { name: "Client one", width: 118, image: "" },
-      { name: "Client two", width: 96, image: "" },
-      { name: "Client three", width: 132, image: "" },
-      { name: "Client four", width: 104, image: "" },
+      {
+        name: "Sealitup Packing Solutions",
+        width: 48,
+        image: "/images/clients/sealitup.png",
+      },
+      {
+        name: "BareBloom Innerwear",
+        width: 89,
+        image: "/images/clients/barebloom.png",
+      },
     ],
   },
 
